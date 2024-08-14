@@ -21,13 +21,20 @@ int coinRow(int coins[], int n) {
 }
 
 int main() {
-    int coins[] = {5, 1, 2, 10, 6}; 
-    int n = sizeof(coins) / sizeof(coins[0]);
+    int no;
+    cout<<"Enter no. of coins you have: \n";
+    cin>>no;
     
-    int result = coinRow(coins, n);
+    int coins[no];
+    cout<<"Enter the values of the coins in order: \n";
+  
+    for(int i = 0; i<no; i++){
+    	cin>>coins[i];
+    }
+ 
+    int result = coinRow(coins, no);
     
-    cout << "The maximum value that can be collected is " << result << "." << endl;
+    cout<<"The maximum value that can be collected is "<<result<<"."<<endl;
     
     return 0;
 }
-
