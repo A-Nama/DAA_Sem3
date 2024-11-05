@@ -27,6 +27,26 @@ int mincost(int cost[3][3], int m, int n, int memo[3][3]){
     return memo[m][n];
 }
 
+void printPath(int memo[3][3], int m, int n) {
+    int i = m, j = n;
+    cout << "Path: (" << i << ", " << j << ")";
+    while (i > 0 || j > 0) {
+        if (i == 0) {
+            j--;  // Move left
+        } else if (j == 0) {
+            i--;  // Move up
+        } else if (memo[i-1][j-1] <= memo[i-1][j] && memo[i-1][j-1] <= memo[i][j-1]) {
+            i--; j--;  // Move diagonally
+        } else if (memo[i-1][j] <= memo[i][j-1]) {
+            i--;  // Move up
+        } else {
+            j--;  // Move left
+        }
+        cout << " -> (" << i << ", " << j << ")";
+    }
+    cout << endl;
+}
+
 int main(){
     int m = 3, n = 3;
     int cost[3][3];
@@ -54,5 +74,5 @@ int main(){
     
     int result = mincost(cost, m-1, n-1, memo);
     cout << "The minimum cost is: " << result << endl;
+    printPath(memo, m-1, n-1);
 }
-
